@@ -1,5 +1,34 @@
 # pdoc pybind module argument bug
 
+## Dependencies
+
+- make
+- cmake
+- reasonably modern c++ compiler (eg: g++/clang++)
+- python
+- pdoc<=0.10.0 installed
+
+## Running this POC
+
+Everything is driven from `make`
+
+```text
+$ make help
+Available make targets:
+make gen               # Generate cmake to _bld directory
+make bld               # Build module from cmake. Module will be pdoc_bug_poc.cpython-311-x86_64-linux-gnu.so or whatever py version
+make cln               # Clean build artifacts
+make bug               # Produce bug
+```
+
+#### Reproducing bug
+
+To generate, build, and run the bug you can just do:
+
+```shell
+make bug
+```
+
 ## Problem
 
 The documentation library [pdoc3](https://github.com/pdoc3/pdoc) handles some pybind generated modules incorrectly. The way that it handles pybind generated function signatures is by inserting them into a python exec. It does this because the source code signature for the functions is not available in a pybind built module.

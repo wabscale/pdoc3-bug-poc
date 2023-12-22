@@ -1,6 +1,4 @@
 help:
-	@echo 'Default builds for core and public APIs'
-	@echo
 	@echo 'Available make targets:'
 	@grep PHONY: Makefile | cut -d: -f2 | sed '1d;s/^/make/'
 
