@@ -50,8 +50,8 @@ int main() {
 
 #ifdef PYBIND
 namespace py = pybind11;
-PYBIND11_MODULE(example, m) {
-  m.doc() = "pybind11 example plugin"; // optional module docstring
+PYBIND11_MODULE(pdoc_bug_poc, m) {
+  m.doc() = "pdoc_bug_poc"; // optional module docstring
 
   py::class_<DateTime>(m, "DateTime")
     .def(py::init<>())
@@ -60,6 +60,6 @@ PYBIND11_MODULE(example, m) {
       ;
 
   py::class_<A>(m, "A")
-    .def("epoch", &A::epoch);
+    .def("epoch", &A::epoch, py::arg( "dt" ) = DateTime());
 }
 #endif
